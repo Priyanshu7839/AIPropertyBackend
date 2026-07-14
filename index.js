@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import tests from './test.js'
 import PropertiesRouter from './Properties/Properties.routes.js'
 import ChatRouter from './OpenAIApis/OpenAI.routes.js'
+import CompleteProfile from './Auth/CompleteProfile.routes.js'
 import cors from 'cors'
 
 dotenv.config()
@@ -27,8 +28,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsOptions))
 
 
-app.use('/Properties',PropertiesRouter)
+app.use('/properties',PropertiesRouter)
 app.use('/chat',ChatRouter)
+app.use('/auth',CompleteProfile)
 
 
 
