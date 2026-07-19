@@ -2,6 +2,8 @@ import { supabase } from "../Supabase.js";
 
 
 export const completeProfile = async (req, res) => {
+
+  console.log('complete-profile')
   try {
     const {
       auth_user_id,
