@@ -12,7 +12,9 @@ const corsOptions = {
     origin:[
         'http://localhost:3000',
         'https://aipropertyreport.com/',
-        'https://aipropertyreport.com'
+        'https://aipropertyreport.com',
+        'https://localhost',
+        'capacitor://localhost'
     ],
     credentials:true,
     methods:['GET',"POST","PUT","DELETE","OPTIONS"],
