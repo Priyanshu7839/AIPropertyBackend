@@ -11,6 +11,7 @@ import rentalMarketsPrompt from "../prompts/rentalMarketPrompt.js";
 import passiveIncomePrompt from "../prompts/passiveIncomePrompt.js";
 import dailyBriefingText from '../prompts/dailybriefing.js'
 import dailyBriefingPrompt from '../prompts/dailybriefingprompt.js'
+import NormalChatPrompt from "../prompts/NormalChatPrompt.js";
 
 dotenv.config();
 
@@ -25,7 +26,8 @@ const workflowMap = {
     assess_buy_timing: buyTimingPrompt,
     rank_rental_markets: rentalMarketsPrompt,
     build_passive_income_plan: passiveIncomePrompt,
-    daily_briefing: dailyBriefingPrompt
+    daily_briefing: dailyBriefingPrompt,
+    normal:NormalChatPrompt
 };
 
 export async function chatbot(req, res) {
@@ -33,10 +35,10 @@ export async function chatbot(req, res) {
 
         const {
             intent,
-            conversation
+            conversations
         } = req.body;
 
-        console.log(intent)
+      
 
 
         
@@ -83,7 +85,7 @@ export async function chatbot(req, res) {
         },
       ]
     : []),
-                ...conversation,
+                ...conversations,
             ],
         });
 

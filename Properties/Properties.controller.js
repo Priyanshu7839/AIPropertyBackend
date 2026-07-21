@@ -1,4 +1,6 @@
 import { supabase } from "../Supabase.js";
+import path from 'path'
+import fs from "fs/promises";
 
 
 const tableMap = {
@@ -21,9 +23,11 @@ const toSnakeCase = (obj) => {
 };
 
 export const createProperty = async (req, res) => {
+
     try {
         const { user_id, propertyType } = req.params;
         const propertyData = req.body;
+     
 
         if (!tableMap[propertyType]) {
             return res.status(400).json({
@@ -43,7 +47,7 @@ export const createProperty = async (req, res) => {
 
         const formattedData = {
             ...toSnakeCase(propertyData),
-            user_id: Number(user_id),
+            user_id: user_id,
         };
 
         const { data, error } = await supabase
@@ -79,6 +83,8 @@ export const getProperty = async (req, res) => {
     try {
         const { user_id, propertyType } = req.params;
 
+     
+
         const tableMap = {
             Residential: "residential_properties",
             Commercial: "commercial_properties",
@@ -100,7 +106,7 @@ export const getProperty = async (req, res) => {
                     const { data, error } = await supabase
                         .from(table)
                         .select("*")
-                        .eq("user_id", Number(user_id))
+                        .eq("user_id", user_id)
                         .order("created_at", { ascending: false });
 
                     if (error) throw error;
@@ -223,3 +229,27 @@ export const updateListingTypes = async (req, res) => {
         });
     }
 };
+
+
+export const getDailyBriefing = async(req,res) => {
+    try {
+    const filePath = path.join(
+      process.cwd(),
+      "prompts",
+      "dailybriefing.json"
+    );
+
+    const file = await fs.readFile(filePath, "utf8");
+
+    const briefing = JSON.parse(file);
+
+    res.status(200).json(briefing);
+  } catch (err) {
+    console.error(err);
+
+    res.status(500).json({
+      success: false,
+      message: "Unable to load briefing."
+    });
+  }
+}

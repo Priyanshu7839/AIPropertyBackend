@@ -1,0 +1,45 @@
+{
+  "message": "Hi! This is your Daily Briefing. Feel free to ask me anything about today's market updates, mortgage rates, opportunities, risks, financing, rental markets, commercial real estate, insurance, regulations, or any other topic covered in today's briefing.",
+  "briefing": {
+    "title": "LIAM DAILY BRIEFING",
+    "date": "July 20, 2026",
+    "sections": [
+      {
+        "title": "MARKET PULSE",
+        "content": "Signal: Mortgage rates remain at an 11-month high\nImpact Level: High\nCategory: Mortgage\nSummary: ...\nWhy It Matters: ...\n\nSignal: Pending home sales signal weaker near-term closings\nImpact Level: High\nCategory: Housing Market\nSummary: ...\nWhy It Matters: ...\n\n..."
+      },
+      {
+        "title": "KEY DEVELOPMENTS",
+        "content": "Headline: Mortgage rates enter the week at 6.55%\nSummary: ...\nAffected Markets: ...\nInvestor Impact: ...\nLandlord Impact: ...\nHomeowner Impact: ...\n\nHeadline: Pending sales fall sharply across all regions\n..."
+      },
+      {
+        "title": "OPPORTUNITIES",
+        "content": "Opportunity: Negotiate on homes with failed contracts or extended listing periods\nWho Benefits: ...\nPotential Outcome: ...\nRecommended Action: ...\n\n..."
+      },
+      {
+        "title": "RISKS & WATCHLIST",
+        "content": "Risk: Mortgage rates remain elevated or rise further\nSeverity: High\nAffected States: ...\nRecommended Action: ...\n\n..."
+      },
+      {
+        "title": "MORTGAGE & FINANCING",
+        "content": "Mortgage Rate Update: ...\n\nRefinancing Outlook: ...\n\nCredit Market Outlook: ...\n\nFinancing Recommendation: ..."
+      },
+      {
+        "title": "RENTAL MARKET",
+        "content": "Strongest Rental Markets: ...\n\nWeakest Rental Markets: ...\n\nRent Growth Trends: ...\n\nLandlord Recommendation: ..."
+      },
+      {
+        "title": "INSURANCE & TAXES",
+        "content": "Insurance Trends: Insurance affordability remains most strained in hurricane-, wind-, hail- and wildfire-exposed areas. Florida, Louisiana and Oklahoma have the highest premium burdens relative to income, while parts of southern coastal states recorded inflation-adjusted increases of at least 25% from 2019 through 2024. Property Tax Trends: Assessments may continue reflecting prior price appreciation even as sales activity weakens. Commercial owners should also watch for local tax-burden shifts where declining office assessments reduce municipal revenue.Recommended Actions: Requote coverage 60–90 days before renewal, verify replacement-cost estimates, examine percentage-based catastrophe deductibles, confirm roof settlement terms, document mitigation improvements and appeal unsupported assessments."
+      },
+      {
+        "title": "ACTION ITEMS",
+        "content": "1. Request three same-day mortgage or home-equity quotes...\n2. Audit all insurance policies...\n3. Review every loan maturing within 24 months...\n4. Compare your property...\n5. Identify completed builder inventory..."
+      },
+      {
+        "title": "EXECUTIVE SUMMARY",
+        "content": "U.S. real estate enters the week with mortgage rates at 6.55%, their highest level in nearly a year, and pending home sales down 5.4% in June. Buyers have greater negotiating leverage, but affordability remains strained by financing, insurance and taxes. Housing starts rose 19% to 1.427 million, although the increase was driven by multifamily projects; single-family starts and permits declined, limiting future for-sale supply. Fixed home-equity loans average roughly 8.12%, making them preferable to cash-out refinancing only when preserving a low-rate first mortgage creates clear savings. Commercial conditions remain uneven: the CMBS delinquency rate improved to 7.35%, but office distress remains severe. Insurance risk is concentrated in Florida, Louisiana, Oklahoma and other catastrophe-exposed markets. Owners should compare lenders, review insurance terms, preserve inexpensive debt, stress-test rental supply and begin commercial refinancing well before maturity."
+      }
+    ]
+  }
+}

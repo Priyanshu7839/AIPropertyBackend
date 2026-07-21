@@ -1,5 +1,5 @@
 import express from 'express'
-import { createProperty, getProperty, updateListingTypes } from './Properties.controller.js';
+import { createProperty, getDailyBriefing, getProperty, updateListingTypes } from './Properties.controller.js';
 
 const Router = express.Router()
 
@@ -15,5 +15,7 @@ Router.post(
     updateListingTypes
 );
 
+
+Router.get('/getBriefing',getDailyBriefing)
 
 export default Router
