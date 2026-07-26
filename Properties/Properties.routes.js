@@ -1,5 +1,5 @@
 import express from 'express'
-import { createProperty, getDailyBriefing, getProperty, updateListingTypes } from './Properties.controller.js';
+import { createProperty, getDailyBriefing, getProperty, getRoadmapName, saveChat, updateListingTypes } from './Properties.controller.js';
 
 const Router = express.Router()
 
@@ -17,5 +17,7 @@ Router.post(
 
 
 Router.get('/getBriefing',getDailyBriefing)
+Router.post('/saveUserChat',saveChat)
+Router.post("/get-ai-roadmap-title", getRoadmapName);
 
 export default Router

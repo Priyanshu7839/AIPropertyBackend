@@ -83,6 +83,8 @@ export const getProperty = async (req, res) => {
     try {
         const { user_id, propertyType } = req.params;
 
+        console.log(user_id)
+
      
 
         const tableMap = {
@@ -145,7 +147,7 @@ export const getProperty = async (req, res) => {
         const { data, error } = await supabase
             .from(table)
             .select("*")
-            .eq("user_id", Number(user_id))
+            .eq("user_id", user_id)
             .order("created_at", { ascending: false });
 
         if (error) {
@@ -253,3 +255,79 @@ export const getDailyBriefing = async(req,res) => {
     });
   }
 }
+
+
+export const saveChat = async (req, res) => {
+  try {
+    const { roadmap_completed, context ,user_uuid,title } = req.body;
+   
+
+    const { data, error } = await supabase
+      .from("user_chat")
+      .upsert(
+        {
+          user_uuid,
+          roadmap_completed,
+          context,
+          title,
+          updated_at: new Date().toISOString(),
+        },
+        {
+          onConflict: "user_uuid",
+        }
+      )
+      .select()
+      .single();
+
+    if (error) throw error;
+
+    return res.status(200).json({
+      success: true,
+      message: "AI context saved successfully.",
+      data,
+    });
+  } catch (err) {
+    console.error(err);
+
+    return res.status(500).json({
+      success: false,
+      message: err.message,
+    });
+  }
+};
+
+
+export const getRoadmapName = async (req, res) => {
+  try {
+    const { user_uuid } = req.body;
+
+    if (!user_uuid) {
+      return res.status(400).json({
+        success: false,
+        message: "user_uuid is required.",
+      });
+    }
+
+    const { data, error } = await supabase
+      .from("user_chat")
+      .select("title")
+      .eq("user_uuid", user_uuid)
+      .single();
+
+    if (error) throw error;
+
+    return res.status(200).json({
+      success: true,
+      title: data?.title || null,
+    });
+  } catch (err) {
+    console.error(err);
+
+    return res.status(500).json({
+      success: false,
+      message: err.message,
+    });
+  }
+};
+
+
