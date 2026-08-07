@@ -259,21 +259,22 @@ export const getDailyBriefing = async(req,res) => {
 
 export const saveChat = async (req, res) => {
   try {
-    const { roadmap_completed, context ,user_uuid,title } = req.body;
-   
+    const { roadmap_completed, context, user_uuid, title, chat_id,intent } = req.body;
 
     const { data, error } = await supabase
       .from("user_chat")
       .upsert(
         {
+          chat_id: chat_id || crypto.randomUUID(), // reuse if sent, generate if new
           user_uuid,
           roadmap_completed,
           context,
           title,
           updated_at: new Date().toISOString(),
+          intent:intent
         },
         {
-          onConflict: "user_uuid",
+          onConflict: "chat_id",
         }
       )
       .select()
@@ -284,11 +285,10 @@ export const saveChat = async (req, res) => {
     return res.status(200).json({
       success: true,
       message: "AI context saved successfully.",
-      data,
+      data, // data.chat_id is always present — frontend must store this
     });
   } catch (err) {
     console.error(err);
-
     return res.status(500).json({
       success: false,
       message: err.message,
@@ -331,3 +331,78 @@ export const getRoadmapName = async (req, res) => {
 };
 
 
+export const getUserChatIds = async (req, res) => {
+  try {
+    const { user_uuid } = req.body;
+  
+
+    if (!user_uuid) {
+      return res.status(400).json({
+        success: false,
+        message: "user_uuid is required",
+      });
+    }
+
+    const { data, error } = await supabase
+      .from("user_chat")
+      .select("chat_id,title,intent")
+      .eq("user_uuid", user_uuid);
+
+    if (error) {
+      return res.status(500).json({
+        success: false,
+        message: error.message,
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      data,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      message: err.message,
+    });
+  }
+};
+
+
+
+export const getChatMessages = async (req, res) => {
+
+    console.log('Hell')
+  try {
+    const { chat_id } = req.params;
+
+    if (!chat_id) {
+      return res.status(400).json({
+        success: false,
+        message: "chat_id is required",
+      });
+    }
+
+    const { data, error } = await supabase
+      .from("user_chat")
+      .select("context")
+      .eq("chat_id", chat_id)
+      .single();
+
+    if (error) {
+      return res.status(500).json({
+        success: false,
+        message: error.message,
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      data: data.context,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      message: err.message,
+    });
+  }
+};

@@ -15,6 +15,7 @@ Always follow this schema:
 
 {
   "message": "string",
+  "chat_title":"string",
   "location": "string | null"
 }
 
@@ -22,6 +23,20 @@ Rules:
 
 - "message" is the text shown to the user.
 - "location" must remain null until you are certain of the intended city.
+-Generate a unique conversation title for "chat_title"
+
+The title should be generated in the second response when user answers and then return in every response.
+
+Rules for chat_title:
+
+- Maximum 6 words.
+- Do not use quotation marks.
+- Do not end with punctuation.
+- Be concise.
+- Be descriptive.
+- Base it on the user's goal.
+- Avoid generic titles like "Real Estate Roadmap".
+- Make each title naturally unique to the conversation.
 - Once the user provides a valid city, return it exactly as:
 
 City, ST

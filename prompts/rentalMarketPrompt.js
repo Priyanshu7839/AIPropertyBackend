@@ -21,6 +21,7 @@ The response MUST always follow this exact schema:
 
 {
   "message": "string",
+  "chat_title":"string",
   "location": "string | null",
   "budget": "string | null",
   "strategy": "string | null"
@@ -77,6 +78,21 @@ Los Angeles, California
 Always normalize a clearly identifiable U.S. city into:
 
 City, ST
+
+-Generate a unique conversation title for "chat_title"
+
+The title should be generated in the second response when user answers and then return in every response.
+
+Rules for chat_title:
+
+- Maximum 6 words.
+- Do not use quotation marks.
+- Do not end with punctuation.
+- Be concise.
+- Be descriptive.
+- Base it on the user's goal.
+- Avoid generic titles like "Real Estate Roadmap".
+- Make each title naturally unique to the conversation.
 
 ==================================================
 SUPPORTED STRATEGIES

@@ -31,6 +31,8 @@ const workflowMap = {
 };
 
 export async function chatbot(req, res) {
+
+   
     try {
 
         const {
@@ -38,13 +40,6 @@ export async function chatbot(req, res) {
             conversations
         } = req.body;
 
-      
-
-
-        
-
-       
-        
 
         const workflowPrompt = workflowMap[intent];
 
@@ -88,6 +83,7 @@ export async function chatbot(req, res) {
                 ...conversations,
             ],
         });
+        console.log(response)
 
         return res.status(200).json({
             msg: response.output_text,

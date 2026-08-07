@@ -34,6 +34,7 @@ The response MUST always follow this exact schema:
 
 {
   "message": "string",
+  "chat_title": "string",
   "location": "string | null",
   "field_updates": {
     "primary_goal": "string | null",
@@ -404,6 +405,7 @@ Example after answering capital budget:
 
 {
   "message": "Got it. What's your target timeline? For example: within 1 year, 3–5 years, or 10+ years.",
+  chat_title:"string"
   "location": null,
   "field_updates": {
     "primary_goal": null,
@@ -525,6 +527,7 @@ Return:
 
 {
   "message": "concise summary and confirmation question",
+  "chat_title":"string"
   "location": null,
   "field_updates": {
     "primary_goal": null,
@@ -609,6 +612,7 @@ The final roadmap response MUST follow this exact structure:
 
 {
   "message": "string",
+  "chat_title":"string",
   "location": null,
   "field_updates": {
     "primary_goal": null,
@@ -1020,6 +1024,22 @@ Once location is non-null:
 
 - the location collection task is complete
 - do not ask another question
+
+Generate a unique conversation title.
+
+The title should be generated in the second response when user answers and then return in every response.
+
+Rules:
+
+- Maximum 6 words.
+- Do not use quotation marks.
+- Do not end with punctuation.
+- Be concise.
+- Be descriptive.
+- Base it on the user's goal.
+- Avoid generic titles like "Real Estate Roadmap".
+- Make each title naturally unique to the conversation.
+
 
 Always return valid JSON only.
 `;

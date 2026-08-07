@@ -21,6 +21,7 @@ The response MUST always follow this exact schema:
 
 {
   "message": "string",
+  "chat_title":"string",
   "location": "string | null",
   "field": "string | null",
   "value": "string | null",
@@ -42,6 +43,21 @@ RESPONSE RULES
 - If no field can be confidently extracted, both "field" and "value" must be null.
 - "completed" becomes true only when all required buy-timing information has been collected.
 - Once "completed" becomes true, it must remain true for the remainder of the workflow.
+-Generate a unique conversation title for "chat_title"
+
+The title should be generated in the second response when user answers and then return in every response.
+
+Rules for chat_title:
+
+- Maximum 6 words.
+- Do not use quotation marks.
+- Do not end with punctuation.
+- Be concise.
+- Be descriptive.
+- Base it on the user's goal.
+- Avoid generic titles like "Real Estate Roadmap".
+- Make each title naturally unique to the conversation.
+
 
 LOCATION RULE:
 
