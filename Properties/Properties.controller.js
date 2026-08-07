@@ -406,3 +406,83 @@ export const getChatMessages = async (req, res) => {
     });
   }
 };
+
+
+export const saveFutureProperty = async (req, res) => {
+  try {
+    const { user_uuid, zpid, property_data } = req.body;
+
+    if (!user_uuid || !zpid || !property_data) {
+      return res.status(400).json({
+        success: false,
+        message: "user_uuid, zpid and property_data are required.",
+      });
+    }
+
+    const { data, error } = await supabase
+      .from("future_properties")
+      .insert([
+        {
+          user_uuid,
+          zpid,
+          property_data,
+        },
+      ])
+      .select()
+      .single();
+
+    if (error) {
+      return res.status(500).json({
+        success: false,
+        message: error.message,
+      });
+    }
+
+    return res.status(201).json({
+      success: true,
+      message: "Future property saved successfully.",
+      data,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      message: err.message,
+    });
+  }
+};
+
+export const getFutureProperties = async (req, res) => {
+  try {
+    const { user_uuid } = req.params;
+
+    if (!user_uuid) {
+      return res.status(400).json({
+        success: false,
+        message: "user_uuid is required.",
+      });
+    }
+
+    const { data, error } = await supabase
+      .from("future_properties")
+      .select("*")
+      .eq("user_uuid", user_uuid)
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      return res.status(500).json({
+        success: false,
+        message: error.message,
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      data,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      message: err.message,
+    });
+  }
+};
